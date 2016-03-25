@@ -85,8 +85,11 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-SpyGame/Library
-SpyGame/Temp
 *.dll
 *.mdb 
+
+
+SpyGame/Library
+SpyGame/Temp
  
+SpyGame/Library/metadata/00/00000000000000004000000000000000
