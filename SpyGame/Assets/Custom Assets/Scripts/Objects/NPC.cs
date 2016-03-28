@@ -3,36 +3,16 @@ using System.Collections;
 
 
 
-public class NPC : MonoBehaviour
+public class NPC 
 {
 
-	int iId;
-	string sName;
-	
+	public  int iId;
+	public string sName;
 
 
-	// Use this for initialization
-	void Start()
+	public NPC()
 	{
-		InitFactionRelations();
-
+		iId = -1;
+		sName = "Uknown";
 	}
-
-	#region init functions
-	void InitFactionRelations()
-	{
-
-
-	}
-	#endregion
-	#region update functions
-
-	// Update is called once per frame
-	void Update()
-	{
-
-	}
-
-	#endregion
-
 }

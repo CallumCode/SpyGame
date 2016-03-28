@@ -1,18 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Faction : MonoBehaviour 
+public class Faction  
 {
 
-	// Use this for initialization
-	void Start () 
+	public string sName;
+
+	public Faction()
 	{
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	 {
-	
+		sName = "Unknown";
 	}
 }

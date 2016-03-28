@@ -1,18 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Action : MonoBehaviour 
+public class Action
 {
+	public string sName;
 
-	// Use this for initialization
-	void Start () 
+
+	bool bInstigator = false ;
+	bool bTarget = false;
+
+
+	public Action()
 	{
-	
+
 	}
-	
-	// Update is called once per frame
-	void Update ()
-	 {
-	
+
+	public void RequiresInstigator()
+	{
+		bInstigator = true;
+	}
+
+	public void RequiresTarget()
+	{
+		bTarget = true;
 	}
 }

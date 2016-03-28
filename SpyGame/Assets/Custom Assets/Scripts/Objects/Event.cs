@@ -1,18 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Event : MonoBehaviour 
+public class Event  
 {
 
-	// Use this for initialization
-	void Start () 
+	Action Action;
+	NPC Target;
+	NPC Instigator;
+
+	public Event(Action inAction)
 	{
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	 {
-	
+		Action = inAction;
 	}
 }
