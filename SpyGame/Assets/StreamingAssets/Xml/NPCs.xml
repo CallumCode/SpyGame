@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <NPCs>
 	<NPC>
 		<Name>Jim</Name>
@@ -6,4 +6,8 @@
 	<NPC> 
 		<Name>Dave</Name>
 	</NPC>
+	<NPC> 
+		<Name>Laura</Name>
+	</NPC>
+
 </NPCs>

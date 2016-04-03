@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Actions>
+	<Action>
+		<Name>Insulted</Name>
+		<Requires>Instigator</Requires> 
+		<Requires>Target</Requires> 		
+	</Action> 
+	<Action>
+		<Name>Slept With</Name>
+		<Requires>Instigator</Requires> 
+		<Requires>Target</Requires> 		
+	</Action> 
+	<Action>
+		<Name>Assulted</Name>
+		<Requires>Instigator</Requires> 
+		<Requires>Target</Requires> 		
+	</Action> 
+	<Action> 
+		<Name>Was Robbed</Name>
+		<Requires>Instigator</Requires> 
+	</Action> 
+	<Action> 
+			<Name>Moved</Name>
+			<Requires>Instigator</Requires> 
+	</Action> 
+</Actions>

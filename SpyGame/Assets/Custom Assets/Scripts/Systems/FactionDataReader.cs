@@ -23,7 +23,7 @@ public class FactionDataReader : MonoBehaviour
 	void ReadAllFactions()
 	{
 		XmlDocument xmlDoc = new XmlDocument();
-		string path = (Application.dataPath + "/Custom Assets/Xml/" + sFactionFileTime);
+		string path = (Application.streamingAssetsPath + "/Xml/" + sFactionFileTime);
 		xmlDoc.Load(path);
 
 		xmlDoc.GetElementsByTagName("Faction");
@@ -56,6 +56,6 @@ public class FactionDataReader : MonoBehaviour
 	{
 		string name = nameNode.FirstChild.Value;
 		newFaction.sName = name;
-		Debug.Log("create new faction : " + name);
+	//	Debug.Log("create new faction : " + name);
 	}
 }

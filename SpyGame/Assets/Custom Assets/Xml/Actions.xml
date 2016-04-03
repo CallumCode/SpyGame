@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Actions>
-	<Action>
-		<Name>Kill</Name>
-		<Requires>Instigator</Requires> 
-		<Requires>Target</Requires> 		
-	</Action> 
-</Actions>

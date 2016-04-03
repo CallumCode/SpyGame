@@ -35,7 +35,8 @@ public class ActionManager : MonoBehaviour
 
 		if (actionContainer != null && actionContainer.Count > 0)
 		{
-			action = (Action)actionContainer[0];
+			int index = Random.Range(0, actionContainer.Count );
+			action = (Action)actionContainer[index];
 		}
 
 		

@@ -22,7 +22,7 @@ public class NPCDataReader : MonoBehaviour
 	void ReadAllNPCs()
 	{
 		XmlDocument xmlDoc = new XmlDocument();
-		string path = (Application.dataPath + "/Custom Assets/Xml/" + sFactionFileTime);
+		string path = (Application.streamingAssetsPath + "/Xml/" + sFactionFileTime);
 		xmlDoc.Load(path);
 
 		xmlDoc.GetElementsByTagName("NPCs");
@@ -56,6 +56,6 @@ public class NPCDataReader : MonoBehaviour
 	{
 		string name = nameNode.FirstChild.Value;
 		newNPC.sName = name;
-		Debug.Log("create new NPC : " + name) ;
+//		Debug.Log("create new NPC : " + name) ;
 	}
 }

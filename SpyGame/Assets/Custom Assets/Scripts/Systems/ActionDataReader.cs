@@ -24,7 +24,7 @@ public class ActionDataReader : MonoBehaviour
 	void ReadAllActions()
 	{
 		XmlDocument xmlDoc = new XmlDocument();
-		string path = (Application.dataPath + "/Custom Assets/Xml/" + sActionFileName);
+		string path = (Application.streamingAssetsPath + "/Xml/" + sActionFileName);
 		xmlDoc.Load(path);
 
 		xmlDoc.GetElementsByTagName("Actions");
@@ -70,11 +70,11 @@ public class ActionDataReader : MonoBehaviour
 	{
 		if (nameNode.FirstChild.Value == "Instigator")
 		{
-			newAction.RequiresInstigator();
+			newAction.SetRequiresInstigator();
 		}
 		if (nameNode.FirstChild.Value == "Target")
 		{
-			newAction.RequiresTarget();
+			newAction.SetRequiresTarget();
 		}
 
 

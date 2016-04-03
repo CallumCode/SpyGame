@@ -15,13 +15,25 @@ public class Action
 
 	}
 
-	public void RequiresInstigator()
+	public void SetRequiresInstigator()
 	{
 		bInstigator = true;
 	}
 
-	public void RequiresTarget()
+	public void SetRequiresTarget()
 	{
 		bTarget = true;
+	}
+
+
+	public bool DoesRequireTarget()
+	{
+		return bTarget;
+	}
+
+
+	public bool DoesRequireInstigator()
+	{
+		return bInstigator;
 	}
 }
