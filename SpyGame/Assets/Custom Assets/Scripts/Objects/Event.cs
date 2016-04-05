@@ -60,7 +60,7 @@ public class Event
 	public string GetStringDesc()
 	{
 
-		string desc = "Event: " + System.Math.Round(Time.time, 2);
+		string desc = "" + System.Math.Round(Time.time, 2);
 		if(Instigator != null) desc += " " + Instigator.sName;
 		if(action != null) desc += " " + action.sName;
 		if(Target != null) desc += " " + Target.sName;

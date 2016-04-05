@@ -62,7 +62,7 @@ public class ActionDataReader : MonoBehaviour
 	{
 		string name = nameNode.FirstChild.Value;
 		newAction.sName = name;
-		Debug.Log("create new Action: " + name);
+//		Debug.Log("create new Action: " + name);
 	}
 
 

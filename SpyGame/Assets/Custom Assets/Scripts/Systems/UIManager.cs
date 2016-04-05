@@ -6,7 +6,9 @@ public class UIManager : MonoBehaviour
 {
 
 	public Text EventHistory;
-	
+
+	public UIRegion UIRegion;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -23,5 +25,11 @@ public class UIManager : MonoBehaviour
 	{
 
 		EventHistory.text += "\n" + eventDesc;
+	}
+
+
+	public void RegionSelected(Region region)
+	{
+		UIRegion.SetRegion(region);
 	}
 }
