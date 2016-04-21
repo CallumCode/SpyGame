@@ -7,6 +7,7 @@ public class UIRegion : MonoBehaviour
 
 	public Text RegionName;
 	public Text RegionType;
+	public Text NpcsInRegion;
 
 
 
@@ -28,6 +29,8 @@ public class UIRegion : MonoBehaviour
 		{
 			RegionName.text = inRegion.sName;
 
+			NpcsInRegion.text = inRegion.sNamesNPCinRegion;
+
 			ShowrRgionType(inRegion.eDensityType);
 		}
 		else
@@ -41,6 +44,7 @@ public class UIRegion : MonoBehaviour
 	{
 		RegionName.text = "";
 		RegionType.text = "";
+		NpcsInRegion.text = "";
 	}
 
 	void ShowrRgionType(Region.DensityType type)

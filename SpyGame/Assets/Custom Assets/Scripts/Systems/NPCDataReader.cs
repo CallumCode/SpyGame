@@ -12,6 +12,7 @@ public class NPCDataReader : MonoBehaviour
 	void Start () 
 	{
 		ReadAllNPCs();
+
 	}
 	
 	// Update is called once per frame
@@ -33,6 +34,8 @@ public class NPCDataReader : MonoBehaviour
 		{
 			LoadNPC(node);
 		}
+
+		NPCManager.SpreadOutNPCs();
 	}
 
 	void LoadNPC(XmlNode npcNode)

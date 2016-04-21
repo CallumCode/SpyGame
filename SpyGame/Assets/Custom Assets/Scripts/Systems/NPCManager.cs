@@ -3,7 +3,12 @@ using System.Collections;
 
 public class NPCManager : MonoBehaviour
 {
+	//systems ref
+	public RegionManager regionManager;
+
+
 	ArrayList npcContainer;
+
 
 	// Use this for initialization
 	void Start()
@@ -19,7 +24,7 @@ public class NPCManager : MonoBehaviour
 
 	public void AddNPC(NPC npc)
 	{
-		if(npcContainer == null)
+		if (npcContainer == null)
 		{
 			npcContainer = new ArrayList();
 		}
@@ -40,7 +45,7 @@ public class NPCManager : MonoBehaviour
 			int index = Random.Range(0, npcContainer.Count);
 			target = (NPC)npcContainer[index];
 
-			if (target.iId == subject.iId) 
+			if (target.iId == subject.iId)
 			{
 				target = GetTarget(subject);
 			}
@@ -60,5 +65,21 @@ public class NPCManager : MonoBehaviour
 			instigator = (NPC)npcContainer[index];
 		}
 		return instigator;
+	}
+
+	public void SpreadOutNPCs()
+	{
+		if (npcContainer != null)
+		{
+			foreach (NPC npc in npcContainer)
+			{
+				Region region = regionManager.GetRandomRegion();
+				if (region)
+				{
+					region.AddNpcToRegion(npc);
+				}
+
+			}
+		}
 	}
 }

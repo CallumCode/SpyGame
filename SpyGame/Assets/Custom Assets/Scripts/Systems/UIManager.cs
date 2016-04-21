@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
 	public void NewEvent(string eventDesc)
 	{
 
-		EventHistory.text += "\n" + eventDesc;
+		EventHistory.text += "" + eventDesc;
 	}
 
 
