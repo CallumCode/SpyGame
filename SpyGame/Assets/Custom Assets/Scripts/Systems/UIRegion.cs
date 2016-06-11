@@ -9,6 +9,7 @@ public class UIRegion : MonoBehaviour
 	public Text RegionType;
 	public Text NpcsInRegion;
 
+	public Text EventHistoryinRegion;
 
 
 	// Use this for initializationv
@@ -32,6 +33,9 @@ public class UIRegion : MonoBehaviour
 			NpcsInRegion.text = inRegion.sNamesNPCinRegion;
 
 			ShowrRgionType(inRegion.eDensityType);
+
+			EventHistoryinRegion.text = "";
+			EventHistoryinRegion.text = inRegion.GetAllEventDesc();
 		}
 		else
 		{

@@ -22,13 +22,10 @@ public class EventManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space) )
-		{
-			CreateNewEvent();
-		}
+		
 	}
 
-
+	/*
 	void CreateNewEvent()
 	{
 		if (eventHistory == null) eventHistory = new ArrayList();
@@ -39,5 +36,17 @@ public class EventManager : MonoBehaviour
 		UIManager.NewEvent(newEvent.GetStringDesc());
 		eventHistory.Add(newEvent);
 
+	}*/
+
+	public	Event CreatNewEventFromNPC(NPC instigator , ArrayList npcsInRegion , Region inLocation)
+	{
+		Event newEvent = null;
+		
+		newEvent = new Event(instigator, npcsInRegion , actionManager , inLocation);
+		UIManager.NewEvent(newEvent.GetStringDesc());
+
+		if (eventHistory == null) eventHistory = new ArrayList();
+
+		return newEvent;
 	}
 }

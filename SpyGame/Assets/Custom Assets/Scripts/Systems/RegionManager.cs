@@ -40,4 +40,13 @@ public class RegionManager : MonoBehaviour
 
 		return region;
 	}
+
+	public void CreateEventInEachRegion()
+	{
+
+		foreach (Region region in regionConainter)
+		{
+			region.CreateEvenFromNPCs();
+		}
+	}
 }

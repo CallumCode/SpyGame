@@ -4,7 +4,7 @@ using System.Collections;
 public class InputManager : MonoBehaviour
 {
 	public UIManager UIManager;
-
+	public RegionManager RegionManager;
 	float horizontalSpeed = 0.1f;
 	float verticalSpeed = 0.1f;
 
@@ -21,6 +21,12 @@ public class InputManager : MonoBehaviour
 		SelectCheck();
 
 		MoveCheck();
+
+
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			RegionManager.CreateEventInEachRegion();
+		}
 
 	}
 

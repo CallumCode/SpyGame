@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Region : MonoBehaviour
 {
+	public EventManager eventManager;
 	public RegionManager regionManager;
 	public string sName;
 	public string sNamesNPCinRegion;
@@ -14,6 +16,8 @@ public class Region : MonoBehaviour
 
 
 	ArrayList npcsInRegion;
+
+	ArrayList localEventHistory;
 
 	// Use this for initialization
 	void Start()
@@ -37,6 +41,40 @@ public class Region : MonoBehaviour
 		Debug.Log(npc.sName + " arrived in " + sName);
 	}
 
+	public string GetAllEventDesc()
+	{
+		string desc = "";
 
-	
+		if(localEventHistory!= null)
+		{
+			foreach(Event theEvent in localEventHistory)
+			{
+				desc += theEvent.GetStringDesc();
+			}
+		}
+
+		return desc;
+	}
+
+	public void CreateEvenFromNPCs()
+	{
+		if (npcsInRegion == null) return;
+
+		float count = npcsInRegion.Count;
+		if (count < 2) return;
+
+		int instigatorIndex = (int)(UnityEngine.Random.value * count);
+
+		NPC instigator = (NPC) npcsInRegion[instigatorIndex];
+		if (instigator == null) return;
+
+		Event theEvent =  eventManager.CreatNewEventFromNPC(instigator , npcsInRegion , this);
+		
+		if (theEvent != null)
+		{
+			if (localEventHistory == null) localEventHistory = new ArrayList();
+			localEventHistory.Add(theEvent);
+		}
+
+	}
 }
