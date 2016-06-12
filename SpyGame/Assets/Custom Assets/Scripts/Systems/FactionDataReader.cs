@@ -11,8 +11,7 @@ public class FactionDataReader : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		ReadAllFactions();
-	}
+ 	}
 
 	// Update is called once per frame
 	void Update()
@@ -20,7 +19,7 @@ public class FactionDataReader : MonoBehaviour
 
 	}
 
-	void ReadAllFactions()
+	public void ReadAllFactions()
 	{
 		XmlDocument xmlDoc = new XmlDocument();
 		string path = (Application.streamingAssetsPath + "/Xml/" + sFactionFileTime);

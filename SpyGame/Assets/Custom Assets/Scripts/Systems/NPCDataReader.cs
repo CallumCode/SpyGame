@@ -11,8 +11,7 @@ public class NPCDataReader : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		ReadAllNPCs();
-
+ 
 	}
 	
 	// Update is called once per frame
@@ -20,7 +19,7 @@ public class NPCDataReader : MonoBehaviour
 	{
 	
 	}
-	void ReadAllNPCs()
+	public void ReadAllNPCs()
 	{
 		XmlDocument xmlDoc = new XmlDocument();
 		string path = (Application.streamingAssetsPath + "/Xml/" + sFactionFileTime);
@@ -35,7 +34,6 @@ public class NPCDataReader : MonoBehaviour
 			LoadNPC(node);
 		}
 
-		NPCManager.SpreadOutNPCs();
 	}
 
 	void LoadNPC(XmlNode npcNode)

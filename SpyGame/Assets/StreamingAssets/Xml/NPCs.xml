@@ -9,5 +9,14 @@
 	<NPC> 
 		<Name>Laura</Name>
 	</NPC>
+	<NPC> 
+		<Name>John</Name>
+	</NPC>
+	<NPC> 
+		<Name>David</Name>
+	</NPC>
+	<NPC> 
+		<Name>Cameron</Name>
+	</NPC>
 
 </NPCs>

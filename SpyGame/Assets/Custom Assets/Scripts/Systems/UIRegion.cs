@@ -10,7 +10,9 @@ public class UIRegion : MonoBehaviour
 	public Text NpcsInRegion;
 
 	public Text EventHistoryinRegion;
+	public Text EventHistoryTitle;
 
+	Region region;
 
 	// Use this for initializationv
 	void Start()
@@ -22,26 +24,17 @@ public class UIRegion : MonoBehaviour
 	void Update()
 	{
 
+		if (region && region.UINeedsUpdate)
+		{
+			RefreshUI();
+		}
+
 	}
 
 	public void SetRegion(Region inRegion)
 	{
-		if(inRegion)
-		{
-			RegionName.text = inRegion.sName;
-
-			NpcsInRegion.text = inRegion.sNamesNPCinRegion;
-
-			ShowrRgionType(inRegion.eDensityType);
-
-			EventHistoryinRegion.text = "";
-			EventHistoryinRegion.text = inRegion.GetAllEventDesc();
-		}
-		else
-		{
-			HideInfo();
-		}
-
+		region = inRegion;
+		RefreshUI();
 	}
 
 	void HideInfo()
@@ -49,6 +42,8 @@ public class UIRegion : MonoBehaviour
 		RegionName.text = "";
 		RegionType.text = "";
 		NpcsInRegion.text = "";
+		EventHistoryinRegion.text = "";
+		EventHistoryTitle.text = "";
 	}
 
 	void ShowrRgionType(Region.DensityType type)
@@ -56,21 +51,46 @@ public class UIRegion : MonoBehaviour
 
 		switch (type)
 		{
-			case Region.DensityType.City:
-				RegionType.text = "City";
-				break;
+			//case Region.DensityType.City:
+				//RegionType.text = "City";
+				//break;
 			case Region.DensityType.country:
 				RegionType.text = "country";
 				break;
-			case Region.DensityType.road:
-				RegionType.text = "road";
-				break;
+			//case Region.DensityType.road:
+			//	RegionType.text = "road";
+				//break;
 			case Region.DensityType.town:
 				RegionType.text = "town";
 				break;
 			case Region.DensityType.village:
 				RegionType.text = "village";
 				break;
+		}
+	}
+
+
+	void RefreshUI()
+	{
+		if (region != null )
+		{
+			RegionName.text = region.sName;
+
+			NpcsInRegion.text = region.sNamesNPCinRegion;
+
+			ShowrRgionType(region.eDensityType);
+
+			EventHistoryinRegion.text = "";
+			EventHistoryinRegion.text = region.GetAllEventDesc();
+
+			region.UINeedsUpdate = false;
+
+			EventHistoryTitle.text = "Local History"; //TODO hide it 
+
+		}
+		else
+		{
+			HideInfo();
 		}
 	}
 }

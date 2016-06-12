@@ -12,8 +12,7 @@ public class ActionDataReader : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		ReadAllActions();
-	}
+ 	}
 
 	// Update is called once per frame
 	void Update()
@@ -21,7 +20,7 @@ public class ActionDataReader : MonoBehaviour
 
 	}
 
-	void ReadAllActions()
+	public void ReadAllActions()
 	{
 		XmlDocument xmlDoc = new XmlDocument();
 		string path = (Application.streamingAssetsPath + "/Xml/" + sActionFileName);

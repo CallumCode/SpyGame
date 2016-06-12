@@ -6,11 +6,25 @@ public class Region : MonoBehaviour
 {
 	public EventManager eventManager;
 	public RegionManager regionManager;
+	
+	 
+	public   Sprite[] regionSprites;
+	//
 	public string sName;
+	public int depth;
+	public GameObject[] neighbours;
+
+	//
 	public string sNamesNPCinRegion;
 
 
-	public enum DensityType { City, town, village, country, road };
+
+	public enum DensityType {
+		town,
+		village,
+		country,
+		count
+	};
 
 	public DensityType eDensityType;
 
@@ -19,10 +33,21 @@ public class Region : MonoBehaviour
 
 	ArrayList localEventHistory;
 
-	// Use this for initialization
-	void Start()
+
+	public bool UINeedsUpdate;
+
+
+	
+	void Awake()
 	{
-		regionManager.AddRegion(this);
+
+		sName = "Region Name " + Math.Round( UnityEngine.Random.value * 100 ,1);
+
+		int type = UnityEngine.Random.Range(0 , (int)DensityType.count);
+
+		eDensityType = (DensityType)type;
+		if(type >= 0 && type < (int) DensityType.count)	GetComponent<SpriteRenderer>().sprite = regionSprites[type];
+
 	}
 
 	// Update is called once per frame
@@ -36,7 +61,7 @@ public class Region : MonoBehaviour
 		if (npcsInRegion == null) npcsInRegion = new ArrayList();
 		npcsInRegion.Add(npc);
 
-		sNamesNPCinRegion += " " + npc.sName;
+		sNamesNPCinRegion += "\n" + npc.sName;
 
 		Debug.Log(npc.sName + " arrived in " + sName);
 	}
@@ -74,7 +99,9 @@ public class Region : MonoBehaviour
 		{
 			if (localEventHistory == null) localEventHistory = new ArrayList();
 			localEventHistory.Add(theEvent);
+			UINeedsUpdate = true;
 		}
 
 	}
+
 }
