@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class RegionManager : MonoBehaviour 
 {
@@ -39,7 +40,7 @@ public class RegionManager : MonoBehaviour
 
 		if(regionConainter != null && regionConainter.Count > 0)
 		{
-			int index = (int)(Random.value * regionConainter.Count);
+			int index = (int)(UnityEngine.Random.value * regionConainter.Count);
 
 			region = (Region)regionConainter[index];
 
@@ -84,4 +85,9 @@ public class RegionManager : MonoBehaviour
 			SpawnRegion(pos); 
 		}
 	}
+
+    public ArrayList GetAllRegions()
+    {
+        return regionConainter;
+    }
 }

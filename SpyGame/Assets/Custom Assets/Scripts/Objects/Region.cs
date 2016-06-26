@@ -63,7 +63,7 @@ public class Region : MonoBehaviour
 
 		sNamesNPCinRegion += "\n" + npc.sName;
 
-		Debug.Log(npc.sName + " arrived in " + sName);
+		//Debug.Log(npc.sName + " arrived in " + sName);
 	}
 
 	public string GetAllEventDesc()
@@ -104,4 +104,8 @@ public class Region : MonoBehaviour
 
 	}
 
+    public string GetName()
+    {
+        return sName;
+    }
 }

@@ -15,6 +15,10 @@ public class Action
 
 	}
 
+    public string GetName()
+    {
+        return sName;
+    }
 	public void SetRequiresInstigator()
 	{
 		bInstigator = true;

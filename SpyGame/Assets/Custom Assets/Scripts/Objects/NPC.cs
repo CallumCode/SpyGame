@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-
+using System;
 
 public class NPC 
 {
@@ -15,4 +14,9 @@ public class NPC
 		iId = -1;
 		sName = "Uknown";
 	}
+
+    public string GetName()
+    {
+        return sName;
+    }
 }

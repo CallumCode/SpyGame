@@ -82,4 +82,9 @@ public class NPCManager : MonoBehaviour
 			}
 		}
 	}
+
+   public  ArrayList GetAllNPCs()
+    {
+        return npcContainer;
+    }
 }
