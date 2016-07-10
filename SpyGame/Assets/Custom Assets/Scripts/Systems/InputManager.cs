@@ -5,6 +5,9 @@ public class InputManager : MonoBehaviour
 {
 	public UIManager UIManager;
 	public RegionManager RegionManager;
+
+	public UIEventCreator UIEventCreator;
+
 	float horizontalSpeed = 0.1f;
 	float verticalSpeed = 0.1f;
 
@@ -32,7 +35,7 @@ public class InputManager : MonoBehaviour
 
 	void MoveCheck()
 	{
-		if (Input.GetMouseButton(1))
+		if (Input.GetMouseButton(1)  &&  UIEventCreator.isActiveAndEnabled == false)
 		{
 
 			float h = horizontalSpeed * Input.GetAxis("Mouse X");
@@ -53,7 +56,7 @@ public class InputManager : MonoBehaviour
 			if (hit.collider != null)
 			{
 				Debug.Log("Clicked " + hit.collider.tag);
-				if (hit.collider.CompareTag("Region") )
+				if (hit.collider.CompareTag("Region") && UIEventCreator.isActiveAndEnabled == false)
 				{
 					UIManager.RegionSelected(hit.collider.gameObject.GetComponent<Region>());
 				}

@@ -94,9 +94,13 @@ public class UIEventCreator : MonoBehaviour
 		if (gameObject.activeSelf)
 		{
 			gameObject.SetActive(false);
+
+ 			Camera.main.transform.forward = Vector3.forward;
 		}
 		else
 		{
+ 			Camera.main.transform.forward = Vector3.up;
+
 			gameObject.SetActive(true);
 			PopulateDropdowns();
 		}
