@@ -6,96 +6,189 @@ using System;
 
 public class UIEventCreator : MonoBehaviour
 {
-    public InputField TurnInput;
-    public Dropdown NPCDropDown;
-    public Dropdown NPCTargetDropDown;
-    public Dropdown ActionDropDown;
-    public Dropdown RegionDropDown;
+	public InputField TurnInput;
+	public Dropdown NPCInstigatorDropDown;
+	public Dropdown NPCTargetDropDown;
+	public Dropdown ActionDropDown;
+	public Dropdown RegionDropDown;
 
-    public ActionManager ActionManager;
-    public NPCManager NPCManager;
-    public RegionManager RegionManager;
-    // Use this for initialization
-    void Start ()
-    {
-        
-    }
-	
-	// Update is called once per frame
-	void Update ()
-    {
+	public ActionManager ActionManager;
+	public NPCManager NPCManager;
+	public RegionManager RegionManager;
+	public EventManager EventManager;
+	public PlayerManager PlayerManager;
+
+	// Use this for initialization
+	void Start()
+	{
 
 	}
 
-    void PopulateActions()
-    {
-        ActionDropDown.ClearOptions();
+	// Update is called once per frame
+	void Update()
+	{
 
-        ArrayList actions =  ActionManager.GetAllActons();
+	}
 
-        List<string> options = new List<string>();
+	void PopulateActions()
+	{
+		ActionDropDown.ClearOptions();
 
-        foreach (Action action in actions)
-        {
-            options.Add(action.GetName());
-        }
+		ArrayList actions = ActionManager.GetAllActons();
 
-        ActionDropDown.AddOptions(options);
-    }
+		List<string> options = new List<string>();
 
-    void PopulateNPCs()
-    {
-        
+		foreach (Action action in actions)
+		{
+			options.Add(action.GetName());
+		}
 
-        NPCDropDown.ClearOptions();
-        NPCTargetDropDown.ClearOptions();
+		ActionDropDown.AddOptions(options);
+	}
 
-        ArrayList npcs = NPCManager.GetAllNPCs();
+	void PopulateNPCs()
+	{
 
-        List<string> options = new List<string>();
 
-        foreach (NPC npc in npcs)
-        {
-            options.Add(npc.GetName());
-        }
+		NPCInstigatorDropDown.ClearOptions();
+		NPCTargetDropDown.ClearOptions();
 
-        NPCTargetDropDown.AddOptions(options);
-        NPCDropDown.AddOptions(options);
-    }
+		ArrayList npcs = NPCManager.GetAllNPCs();
 
-    void  PopulateRegions()
-    {
-        RegionDropDown.ClearOptions();
+		List<string> options = new List<string>();
 
-        ArrayList regions = RegionManager.GetAllRegions();
+		foreach (NPC npc in npcs)
+		{
+			options.Add(npc.GetName());
+		}
 
-        List<string> options = new List<string>();
-        
-        foreach(Region region in regions)
-        {
-            options.Add(region.GetName());
-        }
+		NPCTargetDropDown.AddOptions(options);
+		NPCInstigatorDropDown.AddOptions(options);
+	}
 
-        RegionDropDown.AddOptions(options);
-    }
+	void PopulateRegions()
+	{
+		RegionDropDown.ClearOptions();
 
-    void PopulateDropdowns()
-    {
-        PopulateActions();
-        PopulateNPCs();
-        PopulateRegions();
-    }
+		ArrayList regions = RegionManager.GetAllRegions();
 
-    public void Toggle()
-    {
-        if (gameObject.activeSelf)
-        {
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            gameObject.SetActive(true);
-            PopulateDropdowns();
-        }
-    }
+		List<string> options = new List<string>();
+
+		foreach (Region region in regions)
+		{
+			options.Add(region.GetName());
+		}
+
+		RegionDropDown.AddOptions(options);
+	}
+
+	void PopulateDropdowns()
+	{
+		PopulateActions();
+		PopulateNPCs();
+		PopulateRegions();
+	}
+
+	public void Toggle()
+	{
+		if (gameObject.activeSelf)
+		{
+			gameObject.SetActive(false);
+		}
+		else
+		{
+			gameObject.SetActive(true);
+			PopulateDropdowns();
+		}
+	}
+
+
+public	void CreatEventFromDropDowns()
+	{
+
+		int correctCount = 0;
+		int wrongCount = 0;
+
+		int bestGuess = 0;
+		int bestWrong = 0;
+
+		ArrayList simularEvents = new ArrayList();
+
+		ArrayList eventHistory = EventManager.GetEventHistory();
+		if (eventHistory != null)
+		{
+			Action action = null;
+			ArrayList actions = ActionManager.GetAllActons();
+			if (actions != null)
+			{
+				action = (Action)actions[ActionDropDown.value];
+
+			}
+
+			NPC npcTarget = null;
+			NPC npcInstigator = null;
+			ArrayList npcs = NPCManager.GetAllNPCs();
+			if (npcs != null)
+			{
+				npcTarget = (NPC)npcs[NPCTargetDropDown.value];
+				npcInstigator = (NPC)npcs[NPCInstigatorDropDown.value];
+			}
+			
+			Debug.Log(" Checking " + eventHistory.Count);
+
+
+			foreach (Event anEvent in eventHistory)
+			{
+				correctCount = 0;
+				wrongCount = 0;
+				int compare = 0;
+
+				compare = anEvent.CompaireAction(action);
+				correctCount += Mathf.Max(0, compare);
+				wrongCount += Mathf.Min(0, compare);
+
+
+				compare = anEvent.CompareNPCInstigator(npcInstigator);
+				correctCount += Mathf.Max(0, compare);
+				wrongCount += Mathf.Min(0, compare);
+
+				compare = anEvent.CompareNPCTarget(npcTarget);
+				correctCount += Mathf.Max(0, compare);
+				wrongCount += Mathf.Min(0, compare);
+
+
+				if (correctCount > bestGuess)
+				{
+					simularEvents.Clear();
+
+					simularEvents.Add(anEvent);
+					bestGuess = correctCount;
+					bestWrong = Mathf.Abs(wrongCount);
+				}
+				else if (correctCount == bestGuess)
+				{
+					simularEvents.Add(anEvent);
+				}
+			}
+
+
+		}
+
+
+		PlayerManager.SellHasBeenMade(bestGuess,bestWrong);
+
+		// Here we remove the event (or events ) that is cloesest to the guess
+		if ( simularEvents.Count > 0) 
+		{
+			Debug.Log("Sold  Event");
+
+
+			foreach (Event anEvent in simularEvents)
+			{
+				Debug.Log("removed "  + anEvent.GetStringDesc() );
+				eventHistory.Remove(anEvent);
+			}
+		}
+	}
+
 }

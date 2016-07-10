@@ -105,4 +105,34 @@ public class Event
 	{
 		Location = startLoccation;
 	}
+
+
+	// Geters
+
+		
+	//Compare Functions
+	public int CompaireAction(Action  inAction)
+	{
+		if (action == null) return 0;
+
+		if (inAction != null && action.sName == inAction.sName) return 1;
+		
+		return -1;
+	}
+
+	public int CompareNPCTarget(NPC inNPC)
+	{
+		if (Target == null) return 0;
+
+		if (inNPC!= null && inNPC.sName == Target.sName) return 1;
+		return -1;
+	}
+
+	public int CompareNPCInstigator(NPC inNPC)
+	{
+		if (Instigator == null) return 0;
+
+		if (inNPC != null && inNPC.sName == Instigator.sName) return 1;
+		return -1;
+	}
 }

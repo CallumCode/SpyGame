@@ -47,6 +47,14 @@ public class EventManager : MonoBehaviour
 
 		if (eventHistory == null) eventHistory = new ArrayList();
 
+		eventHistory.Add(newEvent);
+
 		return newEvent;
+	}
+
+
+	public ArrayList GetEventHistory()
+	{
+		return eventHistory;
 	}
 }

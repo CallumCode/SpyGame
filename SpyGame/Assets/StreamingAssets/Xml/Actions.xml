@@ -16,11 +16,13 @@
 		<Requires>Target</Requires> 		
 	</Action> 
 	<Action> 
-		<Name>Was Robbed</Name>
+		<Name>Robbed</Name>
 		<Requires>Instigator</Requires> 
-	</Action> 
-	<Action> 
+		<Requires>Target</Requires> 		
+	</Action>
+	<!--<Action> 
 			<Name>Moved</Name>
 			<Requires>Instigator</Requires> 
 	</Action> 
+	 -->
 </Actions>
