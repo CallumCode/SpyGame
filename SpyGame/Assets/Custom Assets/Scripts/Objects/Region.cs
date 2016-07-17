@@ -85,6 +85,7 @@ public class Region : MonoBehaviour
 	{
 		if (npcsInRegion == null) return;
 
+
 		float count = npcsInRegion.Count;
 		if (count < 2) return;
 
@@ -92,6 +93,8 @@ public class Region : MonoBehaviour
 
 		NPC instigator = (NPC) npcsInRegion[instigatorIndex];
 		if (instigator == null) return;
+
+		if (instigator.ShouldDoEvent() == false) return; // this will be a more complicate check in the futre and I will loop all npcs in region. 
 
 		Event theEvent =  eventManager.CreatNewEventFromNPC(instigator , npcsInRegion , this);
 		

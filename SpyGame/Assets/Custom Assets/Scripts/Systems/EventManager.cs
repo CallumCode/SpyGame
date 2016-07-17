@@ -11,7 +11,7 @@ public class EventManager : MonoBehaviour
 
 	public NPCManager NPCManager;
 
-
+	public TurnManager TurnManager;
 
 	// Use this for initialization
 	void Start()
@@ -42,7 +42,7 @@ public class EventManager : MonoBehaviour
 	{
 		Event newEvent = null;
 		
-		newEvent = new Event(instigator, npcsInRegion , actionManager , inLocation);
+		newEvent = new Event(instigator, npcsInRegion , actionManager , inLocation , TurnManager.GetTurn() );
 		UIManager.NewEvent(newEvent.GetStringDesc());
 
 		if (eventHistory == null) eventHistory = new ArrayList();

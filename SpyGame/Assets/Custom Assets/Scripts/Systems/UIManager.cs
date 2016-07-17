@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
 
 	public UIRegion UIRegion;
 
-
+	public Text turn;
 	public Text money;
 	public Text moneyChange;
 	public Text reputation;
@@ -17,13 +17,15 @@ public class UIManager : MonoBehaviour
 
 	string initialMoney;
 	string initialReputation;
- 
+	string initialTurn;
+
 
 	// Use this for initialization
 	void Awake()
 	{
 		initialMoney = money.text;
 		initialReputation = reputation.text;
+		initialTurn = turn.text;
 	}
 
 	void Start () 
@@ -73,5 +75,10 @@ public class UIManager : MonoBehaviour
 			reputationChange.CrossFadeAlpha(1, 0.0f, false);
 			reputationChange.CrossFadeAlpha(0.0f, 1.0f, false);
 		}
+	}
+
+	public void SetTurn(int inTurn)
+	{
+		turn.text = initialTurn + inTurn;
 	}
 }

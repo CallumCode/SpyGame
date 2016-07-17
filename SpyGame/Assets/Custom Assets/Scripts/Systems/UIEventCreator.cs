@@ -126,7 +126,6 @@ public	void CreatEventFromDropDowns()
 			if (actions != null)
 			{
 				action = (Action)actions[ActionDropDown.value];
-
 			}
 
 			NPC npcTarget = null;
@@ -137,29 +136,60 @@ public	void CreatEventFromDropDowns()
 				npcTarget = (NPC)npcs[NPCTargetDropDown.value];
 				npcInstigator = (NPC)npcs[NPCInstigatorDropDown.value];
 			}
-			
+
+			ArrayList regions = RegionManager.GetAllRegions();
+			Region region = null;
+			if(regions != null)
+			{
+				region = (Region)regions[RegionDropDown.value];
+			}
+
 			Debug.Log(" Checking " + eventHistory.Count);
 
+
+			int actionCorrect = 0;
+			int instagatorCorrect = 0;
+			int targetCorrect = 0;
+			int turnCorrect = 0;
+			int regionCorrect = 0;
 
 			foreach (Event anEvent in eventHistory)
 			{
 				correctCount = 0;
 				wrongCount = 0;
-				int compare = 0;
+ 
+				actionCorrect = 0;
+				instagatorCorrect = 0;
+				targetCorrect = 0;
+				turnCorrect = 0;
+				regionCorrect = 0;
 
-				compare = anEvent.CompaireAction(action);
-				correctCount += Mathf.Max(0, compare);
-				wrongCount += Mathf.Min(0, compare);
 
+				// Check if we guess the right action
+				actionCorrect = anEvent.CompaireAction(action);
+				correctCount += Mathf.Max(0, actionCorrect);
+				wrongCount += Mathf.Min(0, actionCorrect);
 
-				compare = anEvent.CompareNPCInstigator(npcInstigator);
-				correctCount += Mathf.Max(0, compare);
-				wrongCount += Mathf.Min(0, compare);
+				// Check if npc who did it was guessed 
+				instagatorCorrect = anEvent.CompareNPCInstigator(npcInstigator);
+				correctCount += Mathf.Max(0, instagatorCorrect);
+				wrongCount += Mathf.Min(0, instagatorCorrect);
 
-				compare = anEvent.CompareNPCTarget(npcTarget);
-				correctCount += Mathf.Max(0, compare);
-				wrongCount += Mathf.Min(0, compare);
+				// Check if target npc was guessed 
+				targetCorrect = anEvent.CompareNPCTarget(npcTarget);
+				correctCount += Mathf.Max(0, targetCorrect);
+				wrongCount += Mathf.Min(0, targetCorrect);
 
+				// Check if exact turn was guesed - change to range later
+				int inputTurnInt = Convert.ToInt32( TurnInput.text);
+				turnCorrect = anEvent.CompaureStartTurn(inputTurnInt);
+				correctCount += Mathf.Max(0, turnCorrect);
+				wrongCount += Mathf.Min(0, turnCorrect);
+
+				// Check if correct locaiton was guessed
+				regionCorrect = anEvent.CompaureRegion(region);
+				correctCount += Mathf.Max(0, regionCorrect);
+				wrongCount += Mathf.Min(0, regionCorrect);
 
 				if (correctCount > bestGuess)
 				{
@@ -168,6 +198,8 @@ public	void CreatEventFromDropDowns()
 					simularEvents.Add(anEvent);
 					bestGuess = correctCount;
 					bestWrong = Mathf.Abs(wrongCount);
+					//Debug.Log("new best actionCorrect " + actionCorrect + " instagatorCorrect " + instagatorCorrect);
+					//Debug.Log("targetCorrect " +  targetCorrect + " turnCorrect " + turnCorrect + " regionCorrect " +regionCorrect);
 				}
 				else if (correctCount == bestGuess)
 				{

@@ -12,6 +12,8 @@ public class Event
 	NPC Instigator;
 	Region Location;
 
+	int turn = -1;
+
 	public Event(Action inAction, NPCManager inNPCManager)
 	{
 		NPCManager = inNPCManager;
@@ -20,8 +22,9 @@ public class Event
 	}
 
 
-	public Event(NPC inInstigator, ArrayList npcsInRegion , ActionManager inActionManager, Region inLocation)
+	public Event(NPC inInstigator, ArrayList npcsInRegion , ActionManager inActionManager, Region inLocation , int inTurn)
 	{
+		turn = inTurn;
  		Instigator = inInstigator;
 		Location = inLocation;
 		actionManager = inActionManager;
@@ -91,7 +94,7 @@ public class Event
 	public string GetStringDesc()
 	{
 
-		string desc = "" + System.Math.Round(Time.time, 2);
+		string desc = "" + turn;
 		if(Instigator != null) desc += " " + Instigator.sName;
 		if(action != null) desc += " " + action.sName;
 		if(Target != null) desc += " " + Target.sName;
@@ -116,7 +119,7 @@ public class Event
 		if (action == null) return 0;
 
 		if (inAction != null && action.sName == inAction.sName) return 1;
-		
+				
 		return -1;
 	}
 
@@ -125,6 +128,7 @@ public class Event
 		if (Target == null) return 0;
 
 		if (inNPC!= null && inNPC.sName == Target.sName) return 1;
+
 		return -1;
 	}
 
@@ -133,6 +137,30 @@ public class Event
 		if (Instigator == null) return 0;
 
 		if (inNPC != null && inNPC.sName == Instigator.sName) return 1;
+
 		return -1;
 	}
+
+
+	public int CompaureStartTurn(  int inTurn)
+	{
+		if (turn  == -1) return 0;
+
+		if (turn == inTurn) return 1;
+
+		return -1;
+	}
+
+	public int CompaureRegion(Region inRegion)
+	{
+		if (Location == null) return 0;
+
+		if (inRegion != null && inRegion.sName == Location.sName) return 1;
+
+		return -1;
+	}
+
 }
+
+
+

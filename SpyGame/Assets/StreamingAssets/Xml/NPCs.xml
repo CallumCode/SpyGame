@@ -18,5 +18,22 @@
 	<NPC> 
 		<Name>Cameron</Name>
 	</NPC>
-
+	<NPC> 
+		<Name>Rachel</Name>
+	</NPC>
+	<NPC>
+		<Name>Robert</Name>
+	</NPC>
+	<NPC>
+		<Name>Andrew</Name>
+	</NPC>
+	<NPC>
+		<Name>Lewis</Name>
+	</NPC>
+	<NPC>
+		<Name>Amy</Name>
+	</NPC>
+	<NPC>
+		<Name>Lilly</Name>
+	</NPC>
 </NPCs>
